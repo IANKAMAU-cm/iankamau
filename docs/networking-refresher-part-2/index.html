@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+
+    <title>Networking Refresher part 2</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=8fc6364918.css" />
+    <link rel="preload" as="script" href="../assets/built/casper.js%3Fv=8fc6364918" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=8fc6364918.css" />
+
+    <link rel="icon" href="http://localhost:2368/content/images/size/w256h256/2023/08/Pwnliit-1.png" type="image/png">
+    <link rel="canonical" href="http://localhost:2368/networking-refresher-part-2/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="Pwnliit">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Networking Refresher part 2">
+    <meta property="og:description" content="In this article I will be going through various concepts. Let’s first go through TCP vs UDP.
+
+TCP and UDP are both transport protocols. They lie within layer 4 of the OSI model.
+
+In order for a network application to communicate it has to choose how it wants to">
+    <meta property="og:url" content="http://localhost:2368/networking-refresher-part-2/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta property="article:published_time" content="2023-08-27T12:59:57.000Z">
+    <meta property="article:modified_time" content="2023-08-27T12:59:57.000Z">
+    <meta property="article:publisher" content="https://www.facebook.com/www.linkedin.com/in/iankamaugikonyo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Networking Refresher part 2">
+    <meta name="twitter:description" content="In this article I will be going through various concepts. Let’s first go through TCP vs UDP.
+
+TCP and UDP are both transport protocols. They lie within layer 4 of the OSI model.
+
+In order for a network application to communicate it has to choose how it wants to">
+    <meta name="twitter:url" content="http://localhost:2368/networking-refresher-part-2/">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Ian Kamau Gikonyo">
+    <meta name="twitter:site" content="@ghost">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1330">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Pwnliit",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/size/w256h256/2023/08/Pwnliit-1.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Ian Kamau Gikonyo",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.gravatar.com/avatar/f2ab863ad82d1d51eac4da5dd629ca1e?s=250&r=x&d=mp",
+            "width": 250,
+            "height": 250
+        },
+        "url": "http://localhost:2368/author/ian/",
+        "sameAs": []
+    },
+    "headline": "Networking Refresher part 2",
+    "url": "http://localhost:2368/networking-refresher-part-2/",
+    "datePublished": "2023-08-27T12:59:57.000Z",
+    "dateModified": "2023-08-27T12:59:57.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://images.unsplash.com/photo-1520869562399-e772f042f422?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&ixlib=rb-4.0.3&q=80&w=2000",
+        "width": 2000,
+        "height": 1330
+    },
+    "description": "In this article I will be going through various concepts. Let’s first go through TCP vs UDP.\n\nTCP and UDP are both transport protocols. They lie within layer 4 of the OSI model.\n\nIn order for a network application to communicate it has to choose how it wants to send its data. Either via TCP or UDP.\n\n\nTCP\n\nTransmission control protocol. It is a connection oriented protocol which\nensures quality of service by re-transmitting packets until all packets are received correctly.\n\nIt is the most widely ",
+    "mainEntityOfPage": "http://localhost:2368/networking-refresher-part-2/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="Pwnliit" href="http://localhost:2368/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="http://localhost:2368/" data-key="68cbfb44b9ff9f48fbe476a9cc" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="68cbfb44b9ff9f48fbe476a9cc" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    
+    <link href="http://localhost:2368/webmentions/receive/" rel="webmention">
+    <script defer src="../public/cards.min.js%3Fv=8fc6364918"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=8fc6364918.css">
+    <script defer src="../public/member-attribution.min.js%3Fv=8fc6364918"></script><style>:root {--ghost-accent-color: #241f31;}</style>
+
+</head>
+<body class="post-template is-head-left-logo has-cover">
+<div class="viewport">
+
+    <header id="gh-head" class="gh-head outer">
+        <div class="gh-head-inner inner">
+            <div class="gh-head-brand">
+                <a class="gh-head-logo no-image" href="http://localhost:2368">
+                        Pwnliit
+                </a>
+                <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                <button class="gh-burger"></button>
+            </div>
+
+            <nav class="gh-head-menu">
+                <ul class="nav">
+    <li class="nav-home"><a href="http://localhost:2368/">Home</a></li>
+    <li class="nav-about"><a href="http://localhost:2368/about/">About</a></li>
+</ul>
+
+            </nav>
+
+            <div class="gh-head-actions">
+                    <button class="gh-search gh-icon-btn" data-ghost-search><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+                    <div class="gh-head-members">
+                                <a class="gh-head-link" href="index.html#/portal/signin" data-portal="signin">Sign in</a>
+                                <a class="gh-head-button" href="index.html#/portal/signup" data-portal="signup">Subscribe</a>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="site-content">
+        
+
+
+
+<main id="site-main" class="site-main">
+<article class="article post ">
+
+    <header class="article-header gh-canvas">
+
+        <div class="article-tag post-card-tags">
+        </div>
+
+        <h1 class="article-title">Networking Refresher part 2</h1>
+
+
+        <div class="article-byline">
+        <section class="article-byline-content">
+
+            <ul class="author-list">
+                <li class="author-list-item">
+                    <a href="../author/ian/index.html" class="author-avatar">
+                        <img class="author-profile-image" src="https://www.gravatar.com/avatar/f2ab863ad82d1d51eac4da5dd629ca1e?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp" alt="Ian Kamau Gikonyo" />
+                    </a>
+                </li>
+            </ul>
+
+            <div class="article-byline-meta">
+                <h4 class="author-name"><a href="../author/ian/index.html">Ian Kamau Gikonyo</a></h4>
+                <div class="byline-meta-content">
+                    <time class="byline-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+                        <span class="byline-reading-time"><span class="bull">&bull;</span> 7 min read</span>
+                </div>
+            </div>
+
+        </section>
+        </div>
+
+            <figure class="article-image">
+                <img
+                    srcset="https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300 300w,
+                            https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600 600w,
+                            https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1000 1000w,
+                            https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000 2000w"
+                    sizes="(min-width: 1400px) 1400px, 92vw"
+                    src="https://images.unsplash.com/photo-1520869562399-e772f042f422?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDd8fG5ldHdvcmt8ZW58MHx8fHwxNjkzMTQxMTI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000"
+                    alt="Networking Refresher part 2"
+                />
+                    <figcaption>Photo by <a href="https://unsplash.com/@thomasjsn?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Thomas Jensen</a> / <a href="https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit">Unsplash</a></figcaption>
+            </figure>
+
+    </header>
+
+    <section class="gh-content gh-canvas">
+        <p>In this article I will be going through various concepts. Let’s first go through TCP vs UDP.</p><p>TCP and UDP are both transport protocols. They lie within layer 4 of the OSI model.</p><p>In order for a network application to communicate it has to choose how it wants to send its data. Either via TCP or UDP.</p><h1 id="tcp">TCP</h1><p>Transmission control protocol. It is a connection oriented protocol which<br>ensures quality of service by re-transmitting packets until all packets are received correctly.</p><p>It is the most widely chosen between the two because it can reliably send and receive data. TCP was designed to ensure delivery of all packets and minimize packet loss.</p><p>To start a reliable connection TCP uses a three way handshake:</p><p>SYN &gt; SYN-ACK &gt; ACK</p><p>If a network issue arises and some data segments are lost, TCP can recover them. It achieves reliable connections in three ways:</p><h2 id="1acknowledgements">1.Acknowledgements</h2><p>Using a reference from <a href="https://en.wikipedia.org/?ref=localhost" rel="noopener ugc nofollow">wikipedia </a>an acknowledgement is is a <a href="https://en.wikipedia.org/wiki/Signal?ref=localhost" rel="noopener ugc nofollow">signal</a> that is passed between communicating <a href="https://en.wikipedia.org/wiki/Process_(computing)?ref=localhost" rel="noopener ugc nofollow">processes</a>, <a href="https://en.wikipedia.org/wiki/Computer?ref=localhost" rel="noopener ugc nofollow">computers</a>, or devices to signify acknowledgment, or receipt of message, as part of a <a href="https://en.wikipedia.org/wiki/Communications_protocol?ref=localhost" rel="noopener ugc nofollow">communications protocol</a>.</p><h2 id="2sequencing">2.Sequencing</h2><p>TCP will assign numbers to segments as they are sent.This way the receiving device can collect these segments, reorder them correctly and determine if any segments are missing.</p><h2 id="3checksum">3.Checksum</h2><p>It is the result of a simple calculation run against the data. The checksum of the sender and receiver should match if data is transmitted successfully.</p><p>TCP is great for common tasks such as web browsing and file transfer.</p><h1 id="udp">UDP</h1><p>User Datagram protocol. It is a connectionless protocol that is primarily used to establish low-latency and loss-tolerating connections between applications on the internet.</p><p>UDP speeds up transmissions by enabling the transfer of data before an agreement is provided by the receiving party.</p><p>It has none of the error handling and sequencing of TCP. It however provides checksums for data integrity. UDP does not also implement handshakes and thus exposes an application to any unreliability of the network.</p><p>UDP is considered unreliable because it has no guarantee of delivery, ordering and has no duplicate protection. It is suitable for purposes where error checking and correction are either not necessary or are performed in the application. e.g real-time and live systems like games, voice and video calls.</p><h1 id="port-numbers">Port Numbers</h1><p>Found in layer 4 (Transport layer) of the OSI model.</p><p>Computers and applications have ports which enable transmission of data. With reference to <a href="https://www.techtarget.com/?ref=localhost" rel="noopener ugc nofollow">techtarget </a>:</p><p>A port in networking is <strong>a software-defined number associated to a network protocol that receives or transmits communication for a specific service</strong>. A port in computer hardware is a jack or socket that peripheral hardware plugs into.</p><p>Let me give an example. Lets say you navigate to your favorite website.</p><p>i)The browser first sends a request either in http or https to the webserver.</p><p>The request has a destination port which is port 80 or 443 (80 is used by http and 443 by https).</p><p>It also has a source port; your browser opens a local unique port in your computer to enable connection to the server. Lets say our source port is 5000.</p><p>ii)The server receives the request, looks at the destination port (80) and passes it to the application (Apache or Nginx).</p><p>iii)The server will then send a response</p><p>The response has a destination port which is 5000.</p><p>It also has a source port which is port 80.</p><p>IP addresses gets the data to the computer and the port gets the data to the right application.</p><p>There are 65535 ports.</p><h2 id="common-ports">Common ports</h2><p>21 — FTP (File Transfer Protocol)</p><p>22 — SSH (Secure Shell)</p><p>23 — Telnet</p><p>25 — SMTP (Simple Mail Transfer Protocol)</p><p>53 — DNS (Domain Name System)</p><p>110 — POP3 (Post Office Protocol)</p><p>80 — HTTP (Hyper Text Transfer Protocol)</p><p>443 — HTTPS (Hyper Text Transfer Protocol Secure)</p><p>139 and 445 — SMB (Server Message Block)</p><p>161 — SNMP (Simple Network Management Protocol)</p><p>There are many ports that you will encounter in the field used by different services.</p><h1 id="ip-addresses">IP addresses</h1><p>IP addresses are in the network layer of the OSI model (Internet Protocol address). An IP address is a unique identifier assigned to each device connected to a computer network.</p><p>IP addresses may be represented in various formats: decimal, binary, hexadecimal and octal.</p><p>There are various types of IP addresses: Private IP addresses, Public IP addresses,static IP address and dynamic IP address.</p><p>Public and private IP addresses are indicative of the location of the network <strong>private </strong>being used inside a network while the<strong> public </strong>is used outside of a network.</p><p>Static and dynamic IP addresses indicate permanency. A static IP address is permanent while a dynamic IP address can change from time to time.</p><h2 id="public-ip-private-ip-and-nat"><strong>Public IP, Private IP and NAT</strong></h2><p>A public IP address is an address that can be accessed directly over the internet and is assigned to your network router by your internet service provider (ISP).</p><p>A private IP address is the address your network router assigns to your device. Each device within the same network is assigned a unique private IP address (sometimes called a private network address), this is how devices on the same internal network talk to each other.</p><p>Private IP addresses let devices connected to the same network communicate with one another without connecting to the entire internet.</p><p>NAT or Network Address Translation is a method of mapping devices in a private network to a single Public IP address. (Network Address Translation (NAT)<strong> </strong>conserves IP addresses by enabling private IP networks using unregistered IP addresses to go online).</p><p>There is also two versions of IP addresses:</p><p>i)IP V4 addresses</p><p>ii)IP V6 addresses</p><h2 id="iip-v4-addresses">i)IP V4 addresses</h2><p>A simple example is 10.1.76.99</p><p>An IP V4 address has four octets separated by a dot. Each octet contains 8 bits.Therefore an IP V4 address is 32 bits in length.</p><p>Each octet can contain any number from 0–255.</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:344/1*8fC6XMwz_oC664nDRHes9Q.png" class="kg-image" alt loading="lazy" width="344" height="146"></figure><p>An IP V4 address is separated into two parts:</p><p>i)Network id</p><p>ii)Host</p><p>A subnet mask or CIDR notation is used to distinguish between the network id and host part and it always accompanies an IP address.</p><p>For example, an IPv4 address and its subnet mask may be 192.0.2.1 and 255.255.255.0, respectively. The CIDR notation for the same IP address and subnet is 192.0.2.1/24, because the first 24 bits of the IP address indicate the network and subnet.</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:332/1*vH_cIRSwqfLp7kFNyUeglA.png" class="kg-image" alt loading="lazy" width="332" height="152"></figure><p>IP addresses are also split into various classes:</p><p>Class A, class B, class C, class D and class E</p><p>Each class has a range of IP addresses.</p><p><strong>Class A</strong></p><p>IP addresses range from 1.0.0.0–126.255.255.255</p><p>It’s subnet is 255.0.0.0</p><p>It has 3 octets for host allocation and the total hosts are:16,777,214</p><p><strong>Class B</strong></p><p>IP addresses range from 128.0.0.0–191.255.255.255</p><p>It’s subnet is 255.255.0.0</p><p>It has 2 octets for host allocation and the total hosts are:65,534</p><p><strong>Class C</strong></p><p>IP addresses range from 192.0.0.0–223.255.255.255</p><p>It’s subnet is 255.255.255.0</p><p>It has 1 octet reserved for host allocation. Total hosts are: 254</p><h2 id="iiip-v6-addresses">ii)IP V6 addresses</h2><p>Developed to combat the diminishing IP V4 addresses. An IP V6 address is 128 bits long.</p><p>It has 8 sections and each section is separated by a colon. A section is called a hextet. A hextet has 16 bits hence 16 x 8 =128 bits.</p><p>IP V6 addresses are hexadecimal meaning each character can either be between 0–9 and a-f.</p><p>Each hexadecimal character is made up of 4 binary bits and each bit can either be a 1 or 0.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://miro.medium.com/v2/resize:fit:279/1*2OvLZ8vQskMsRpYaOL4inw.png" class="kg-image" alt loading="lazy" width="279" height="134"><figcaption>An example of an IP V6 address showing different parts of the address.</figcaption></figure><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:270/1*SW8zE3QgCpJBXP_V6kvYdQ.png" class="kg-image" alt loading="lazy" width="270" height="160"></figure><p>For more on IP V6 addresses:</p><p><a href="https://en.wikipedia.org/wiki/IPv6_address?ref=localhost" rel="noopener ugc nofollow">https://en.wikipedia.org/wiki/IPv6_address</a></p><h2 id="what-is-an-ipv6-address">What is an IPv6 Address?</h2><h3 id="by-an-ipv6-address-is-a-128-bit-alphanumeric-value-that-identifies-an-endpoint-device-in-an-internet-protocol-version-6%E2%80%A6">By An IPv6 address is a 128-bit alphanumeric value that identifies an endpoint device in an Internet Protocol Version 6…</h3><p>www.techtarget.com</p><h1 id="mac-addresses">MAC addresses</h1><p>A MAC address stands for Media Access Control address. It lies in the data link layer of the OSI model. MAC addresses are made up of hexadecimal values.</p><p>MAC addresses act as the physical addresses for local communications. They show up in most IEEE 802 networks including: 802.3 (as well as Ethernet II), 802.5, 802.11 (Wi-Fi), 802.15 (Bluetooth), and the ITU-T G.hn standards.</p><p>It is a unique identifier that is used to identify individual electronic devices on a network. MAC addresses are physical addresses, cannot be changed and are unique.</p><p>The address is 48 bits long or 6 bytes.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://miro.medium.com/v2/resize:fit:300/1*GvECTNaW5yE7ahPMRgSgBw.png" class="kg-image" alt loading="lazy" width="300" height="169"><figcaption>An example of a MAC address.</figcaption></figure><p>A MAC address has two sections:</p><ol><li>OUI- Organizationally Unique Identifier. It identifies the vendor.</li><li>NIC specific- Network Interface Controller specific.</li></ol><p>There are 3 types of MAC addresses:</p><p>i)Udicast- a particular unique MAC address.</p><p>ii)Multicast- an address used for an application or protocol. It will be sent to all devices but only those with that application or protocol will listen to it.</p><p>Multicast addresses<strong> </strong>allow a source device to send a packet to a group of devices.</p><p>iii)Broadcast- It is sent to all devices within a network. A broadcast address looks like this: FF-FF-FF-FF-FF-FF</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:218/1*Wgs54-fKrp4a3If3fQ40jQ.jpeg" class="kg-image" alt loading="lazy" width="218" height="191"></figure><p>That is all for now. Thank you for reading.</p>
+    </section>
+
+
+</article>
+</main>
+
+    <section class="footer-cta outer">
+        <div class="inner">
+            <h2 class="footer-cta-title">Sign up for more like this.</h2>
+            <a class="footer-cta-button" href="index.html#/portal" data-portal>
+                <div class="footer-cta-input">Enter your email</div>
+                <span>Subscribe</span>
+            </a>
+        </div>
+    </section>
+
+
+
+            <aside class="read-more-wrap outer">
+                <div class="read-more inner">
+                        
+<article class="post-card post no-image">
+
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../networking-refresher-part-1/index.html">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    Networking Refresher part 1
+                </h2>
+            </header>
+                <div class="post-card-excerpt">In this article I will be covering a brief networking refresher to get you going.
+
+What is a computer network? Basically a computer network is a group or system of interconnected computers.
+
+Any network in a single area is called a LAN (Local Area Network) and the LAN then connects</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+                <span class="post-card-meta-length">3 min read</span>
+        </footer>
+
+    </div>
+
+</article>
+                        
+<article class="post-card post">
+
+    <a class="post-card-image-link" href="../how-did-i-get-started-in-cybersecurity/index.html">
+
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1526392269816-39d8ed656494?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGNvbXB8ZW58MHx8fHwxNjkzMTQwNjI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300 300w,
+                    https://images.unsplash.com/photo-1526392269816-39d8ed656494?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGNvbXB8ZW58MHx8fHwxNjkzMTQwNjI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600 600w,
+                    https://images.unsplash.com/photo-1526392269816-39d8ed656494?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGNvbXB8ZW58MHx8fHwxNjkzMTQwNjI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1000 1000w,
+                    https://images.unsplash.com/photo-1526392269816-39d8ed656494?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGNvbXB8ZW58MHx8fHwxNjkzMTQwNjI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000 2000w"
+            sizes="(max-width: 1000px) 400px, 800px"
+            src="https://images.unsplash.com/photo-1526392269816-39d8ed656494?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDh8fGNvbXB8ZW58MHx8fHwxNjkzMTQwNjI0fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600"
+            alt="How did I get started in cybersecurity"
+            loading="lazy"
+        />
+
+
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../how-did-i-get-started-in-cybersecurity/index.html">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    How did I get started in cybersecurity
+                </h2>
+            </header>
+                <div class="post-card-excerpt">Hello guys, in this article I will be talking about how I started learning and still learning about cybersecurity.
+
+First of all what is cybersecurity. In my own terms cybersecurity is the process of preventing, protecting and recovering data and digital assets from theft or damage.
+
+The cybersecurity field is</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+                <span class="post-card-meta-length">1 min read</span>
+        </footer>
+
+    </div>
+
+</article>
+                        
+<article class="post-card post">
+
+    <a class="post-card-image-link" href="../intro/index.html">
+
+        <img class="post-card-image"
+            srcset="https://images.unsplash.com/photo-1615309662146-255e7532957e?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxjb21wfGVufDB8fHx8MTY5MzE0MDYyNHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300 300w,
+                    https://images.unsplash.com/photo-1615309662146-255e7532957e?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxjb21wfGVufDB8fHx8MTY5MzE0MDYyNHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600 600w,
+                    https://images.unsplash.com/photo-1615309662146-255e7532957e?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxjb21wfGVufDB8fHx8MTY5MzE0MDYyNHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1000 1000w,
+                    https://images.unsplash.com/photo-1615309662146-255e7532957e?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxjb21wfGVufDB8fHx8MTY5MzE0MDYyNHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000 2000w"
+            sizes="(max-width: 1000px) 400px, 800px"
+            src="https://images.unsplash.com/photo-1615309662146-255e7532957e?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDE1fHxjb21wfGVufDB8fHx8MTY5MzE0MDYyNHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;600"
+            alt="Intro"
+            loading="lazy"
+        />
+
+
+    </a>
+
+    <div class="post-card-content">
+
+        <a class="post-card-content-link" href="../intro/index.html">
+            <header class="post-card-header">
+                <div class="post-card-tags">
+                </div>
+                <h2 class="post-card-title">
+                    Intro
+                </h2>
+            </header>
+                <div class="post-card-excerpt">Hello guys, welcome to my medium blog. I will be using medium to post cybersecurity related materials for my own growth and your own growth.
+
+I will be writing articles based on what I have learned and also series based.
+
+See you in the next post.</div>
+        </a>
+
+        <footer class="post-card-meta">
+            <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+        </footer>
+
+    </div>
+
+</article>
+                </div>
+            </aside>
+
+
+
+    </div>
+
+    <footer class="site-footer outer">
+        <div class="inner">
+            <section class="copyright"><a href="http://localhost:2368">Pwnliit</a> &copy; 2023</section>
+            <nav class="site-footer-nav">
+                <ul class="nav">
+    <li class="nav-sign-up"><a href="index.html#/portal/">Sign up</a></li>
+</ul>
+
+            </nav>
+            <div class="gh-powered-by"><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
+        </div>
+    </footer>
+
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    crossorigin="anonymous">
+</script>
+<script src="../assets/built/casper.js%3Fv=8fc6364918"></script>
+<script>
+$(document).ready(function () {
+    // Mobile Menu Trigger
+    $('.gh-burger').click(function () {
+        $('body').toggleClass('gh-head-open');
+    });
+    // FitVids - Makes video embeds responsive
+    $(".gh-content").fitVids();
+});
+</script>
+
+
+
+</body>
+</html>
