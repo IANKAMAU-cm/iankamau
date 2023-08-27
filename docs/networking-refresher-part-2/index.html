@@ -8,10 +8,10 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=493247ffb5.css" />
-    <link rel="preload" as="script" href="../assets/built/casper.js%3Fv=493247ffb5" />
+    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=5be07d1dca.css" />
+    <link rel="preload" as="script" href="../assets/built/casper.js%3Fv=5be07d1dca" />
 
-    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=493247ffb5.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=5be07d1dca.css" />
 
     <link rel="icon" href="http://localhost:2368/content/images/size/w256h256/2023/08/Pwnliit-1.png" type="image/png">
     <link rel="canonical" href="http://localhost:2368/networking-refresher-part-2/">
@@ -156,9 +156,10 @@ In order for a network application to communicate it has to choose how it wants 
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="68cbfb44b9ff9f48fbe476a9cc" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
     
     <link href="http://localhost:2368/webmentions/receive/" rel="webmention">
-    <script defer src="../public/cards.min.js%3Fv=493247ffb5"></script>
-    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=493247ffb5.css">
-    <script defer src="../public/member-attribution.min.js%3Fv=493247ffb5"></script><style>:root {--ghost-accent-color: #241f31;}</style>
+    <script defer src="../public/cards.min.js%3Fv=5be07d1dca"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=5be07d1dca.css">
+    <script defer src="../public/comment-counts.min.js%3Fv=5be07d1dca" data-ghost-comments-counts-api="http://localhost:2368/members/api/comments/counts/"></script>
+    <script defer src="../public/member-attribution.min.js%3Fv=5be07d1dca"></script><style>:root {--ghost-accent-color: #241f31;}</style>
 
 </head>
 <body class="post-template is-head-left-logo has-cover">
@@ -175,11 +176,7 @@ In order for a network application to communicate it has to choose how it wants 
             </div>
 
             <nav class="gh-head-menu">
-                <ul class="nav">
-    <li class="nav-home"><a href="http://localhost:2368/">Home</a></li>
-    <li class="nav-about"><a href="http://localhost:2368/about/">About</a></li>
-</ul>
-
+                
             </nav>
 
             <div class="gh-head-actions">
@@ -249,19 +246,15 @@ In order for a network application to communicate it has to choose how it wants 
         <p>In this article I will be going through various concepts. Let’s first go through TCP vs UDP.</p><p>TCP and UDP are both transport protocols. They lie within layer 4 of the OSI model.</p><p>In order for a network application to communicate it has to choose how it wants to send its data. Either via TCP or UDP.</p><h1 id="tcp">TCP</h1><p>Transmission control protocol. It is a connection oriented protocol which<br>ensures quality of service by re-transmitting packets until all packets are received correctly.</p><p>It is the most widely chosen between the two because it can reliably send and receive data. TCP was designed to ensure delivery of all packets and minimize packet loss.</p><p>To start a reliable connection TCP uses a three way handshake:</p><p>SYN &gt; SYN-ACK &gt; ACK</p><p>If a network issue arises and some data segments are lost, TCP can recover them. It achieves reliable connections in three ways:</p><h2 id="1acknowledgements">1.Acknowledgements</h2><p>Using a reference from <a href="https://en.wikipedia.org/?ref=localhost" rel="noopener ugc nofollow">wikipedia </a>an acknowledgement is is a <a href="https://en.wikipedia.org/wiki/Signal?ref=localhost" rel="noopener ugc nofollow">signal</a> that is passed between communicating <a href="https://en.wikipedia.org/wiki/Process_(computing)?ref=localhost" rel="noopener ugc nofollow">processes</a>, <a href="https://en.wikipedia.org/wiki/Computer?ref=localhost" rel="noopener ugc nofollow">computers</a>, or devices to signify acknowledgment, or receipt of message, as part of a <a href="https://en.wikipedia.org/wiki/Communications_protocol?ref=localhost" rel="noopener ugc nofollow">communications protocol</a>.</p><h2 id="2sequencing">2.Sequencing</h2><p>TCP will assign numbers to segments as they are sent.This way the receiving device can collect these segments, reorder them correctly and determine if any segments are missing.</p><h2 id="3checksum">3.Checksum</h2><p>It is the result of a simple calculation run against the data. The checksum of the sender and receiver should match if data is transmitted successfully.</p><p>TCP is great for common tasks such as web browsing and file transfer.</p><h1 id="udp">UDP</h1><p>User Datagram protocol. It is a connectionless protocol that is primarily used to establish low-latency and loss-tolerating connections between applications on the internet.</p><p>UDP speeds up transmissions by enabling the transfer of data before an agreement is provided by the receiving party.</p><p>It has none of the error handling and sequencing of TCP. It however provides checksums for data integrity. UDP does not also implement handshakes and thus exposes an application to any unreliability of the network.</p><p>UDP is considered unreliable because it has no guarantee of delivery, ordering and has no duplicate protection. It is suitable for purposes where error checking and correction are either not necessary or are performed in the application. e.g real-time and live systems like games, voice and video calls.</p><h1 id="port-numbers">Port Numbers</h1><p>Found in layer 4 (Transport layer) of the OSI model.</p><p>Computers and applications have ports which enable transmission of data. With reference to <a href="https://www.techtarget.com/?ref=localhost" rel="noopener ugc nofollow">techtarget </a>:</p><p>A port in networking is <strong>a software-defined number associated to a network protocol that receives or transmits communication for a specific service</strong>. A port in computer hardware is a jack or socket that peripheral hardware plugs into.</p><p>Let me give an example. Lets say you navigate to your favorite website.</p><p>i)The browser first sends a request either in http or https to the webserver.</p><p>The request has a destination port which is port 80 or 443 (80 is used by http and 443 by https).</p><p>It also has a source port; your browser opens a local unique port in your computer to enable connection to the server. Lets say our source port is 5000.</p><p>ii)The server receives the request, looks at the destination port (80) and passes it to the application (Apache or Nginx).</p><p>iii)The server will then send a response</p><p>The response has a destination port which is 5000.</p><p>It also has a source port which is port 80.</p><p>IP addresses gets the data to the computer and the port gets the data to the right application.</p><p>There are 65535 ports.</p><h2 id="common-ports">Common ports</h2><p>21 — FTP (File Transfer Protocol)</p><p>22 — SSH (Secure Shell)</p><p>23 — Telnet</p><p>25 — SMTP (Simple Mail Transfer Protocol)</p><p>53 — DNS (Domain Name System)</p><p>110 — POP3 (Post Office Protocol)</p><p>80 — HTTP (Hyper Text Transfer Protocol)</p><p>443 — HTTPS (Hyper Text Transfer Protocol Secure)</p><p>139 and 445 — SMB (Server Message Block)</p><p>161 — SNMP (Simple Network Management Protocol)</p><p>There are many ports that you will encounter in the field used by different services.</p><h1 id="ip-addresses">IP addresses</h1><p>IP addresses are in the network layer of the OSI model (Internet Protocol address). An IP address is a unique identifier assigned to each device connected to a computer network.</p><p>IP addresses may be represented in various formats: decimal, binary, hexadecimal and octal.</p><p>There are various types of IP addresses: Private IP addresses, Public IP addresses,static IP address and dynamic IP address.</p><p>Public and private IP addresses are indicative of the location of the network <strong>private </strong>being used inside a network while the<strong> public </strong>is used outside of a network.</p><p>Static and dynamic IP addresses indicate permanency. A static IP address is permanent while a dynamic IP address can change from time to time.</p><h2 id="public-ip-private-ip-and-nat"><strong>Public IP, Private IP and NAT</strong></h2><p>A public IP address is an address that can be accessed directly over the internet and is assigned to your network router by your internet service provider (ISP).</p><p>A private IP address is the address your network router assigns to your device. Each device within the same network is assigned a unique private IP address (sometimes called a private network address), this is how devices on the same internal network talk to each other.</p><p>Private IP addresses let devices connected to the same network communicate with one another without connecting to the entire internet.</p><p>NAT or Network Address Translation is a method of mapping devices in a private network to a single Public IP address. (Network Address Translation (NAT)<strong> </strong>conserves IP addresses by enabling private IP networks using unregistered IP addresses to go online).</p><p>There is also two versions of IP addresses:</p><p>i)IP V4 addresses</p><p>ii)IP V6 addresses</p><h2 id="iip-v4-addresses">i)IP V4 addresses</h2><p>A simple example is 10.1.76.99</p><p>An IP V4 address has four octets separated by a dot. Each octet contains 8 bits.Therefore an IP V4 address is 32 bits in length.</p><p>Each octet can contain any number from 0–255.</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:344/1*8fC6XMwz_oC664nDRHes9Q.png" class="kg-image" alt loading="lazy" width="344" height="146"></figure><p>An IP V4 address is separated into two parts:</p><p>i)Network id</p><p>ii)Host</p><p>A subnet mask or CIDR notation is used to distinguish between the network id and host part and it always accompanies an IP address.</p><p>For example, an IPv4 address and its subnet mask may be 192.0.2.1 and 255.255.255.0, respectively. The CIDR notation for the same IP address and subnet is 192.0.2.1/24, because the first 24 bits of the IP address indicate the network and subnet.</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:332/1*vH_cIRSwqfLp7kFNyUeglA.png" class="kg-image" alt loading="lazy" width="332" height="152"></figure><p>IP addresses are also split into various classes:</p><p>Class A, class B, class C, class D and class E</p><p>Each class has a range of IP addresses.</p><p><strong>Class A</strong></p><p>IP addresses range from 1.0.0.0–126.255.255.255</p><p>It’s subnet is 255.0.0.0</p><p>It has 3 octets for host allocation and the total hosts are:16,777,214</p><p><strong>Class B</strong></p><p>IP addresses range from 128.0.0.0–191.255.255.255</p><p>It’s subnet is 255.255.0.0</p><p>It has 2 octets for host allocation and the total hosts are:65,534</p><p><strong>Class C</strong></p><p>IP addresses range from 192.0.0.0–223.255.255.255</p><p>It’s subnet is 255.255.255.0</p><p>It has 1 octet reserved for host allocation. Total hosts are: 254</p><h2 id="iiip-v6-addresses">ii)IP V6 addresses</h2><p>Developed to combat the diminishing IP V4 addresses. An IP V6 address is 128 bits long.</p><p>It has 8 sections and each section is separated by a colon. A section is called a hextet. A hextet has 16 bits hence 16 x 8 =128 bits.</p><p>IP V6 addresses are hexadecimal meaning each character can either be between 0–9 and a-f.</p><p>Each hexadecimal character is made up of 4 binary bits and each bit can either be a 1 or 0.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://miro.medium.com/v2/resize:fit:279/1*2OvLZ8vQskMsRpYaOL4inw.png" class="kg-image" alt loading="lazy" width="279" height="134"><figcaption>An example of an IP V6 address showing different parts of the address.</figcaption></figure><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:270/1*SW8zE3QgCpJBXP_V6kvYdQ.png" class="kg-image" alt loading="lazy" width="270" height="160"></figure><p>For more on IP V6 addresses:</p><p><a href="https://en.wikipedia.org/wiki/IPv6_address?ref=localhost" rel="noopener ugc nofollow">https://en.wikipedia.org/wiki/IPv6_address</a></p><h2 id="what-is-an-ipv6-address">What is an IPv6 Address?</h2><h3 id="by-an-ipv6-address-is-a-128-bit-alphanumeric-value-that-identifies-an-endpoint-device-in-an-internet-protocol-version-6%E2%80%A6">By An IPv6 address is a 128-bit alphanumeric value that identifies an endpoint device in an Internet Protocol Version 6…</h3><p>www.techtarget.com</p><h1 id="mac-addresses">MAC addresses</h1><p>A MAC address stands for Media Access Control address. It lies in the data link layer of the OSI model. MAC addresses are made up of hexadecimal values.</p><p>MAC addresses act as the physical addresses for local communications. They show up in most IEEE 802 networks including: 802.3 (as well as Ethernet II), 802.5, 802.11 (Wi-Fi), 802.15 (Bluetooth), and the ITU-T G.hn standards.</p><p>It is a unique identifier that is used to identify individual electronic devices on a network. MAC addresses are physical addresses, cannot be changed and are unique.</p><p>The address is 48 bits long or 6 bytes.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://miro.medium.com/v2/resize:fit:300/1*GvECTNaW5yE7ahPMRgSgBw.png" class="kg-image" alt loading="lazy" width="300" height="169"><figcaption>An example of a MAC address.</figcaption></figure><p>A MAC address has two sections:</p><ol><li>OUI- Organizationally Unique Identifier. It identifies the vendor.</li><li>NIC specific- Network Interface Controller specific.</li></ol><p>There are 3 types of MAC addresses:</p><p>i)Udicast- a particular unique MAC address.</p><p>ii)Multicast- an address used for an application or protocol. It will be sent to all devices but only those with that application or protocol will listen to it.</p><p>Multicast addresses<strong> </strong>allow a source device to send a packet to a group of devices.</p><p>iii)Broadcast- It is sent to all devices within a network. A broadcast address looks like this: FF-FF-FF-FF-FF-FF</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:218/1*Wgs54-fKrp4a3If3fQ40jQ.jpeg" class="kg-image" alt loading="lazy" width="218" height="191"></figure><p>That is all for now. Thank you for reading.</p>
     </section>
 
+        <section class="article-comments gh-canvas">
+            
+        <script defer src="https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js" data-ghost-comments="http://localhost:2368/" data-api="http://localhost:2368/ghost/api/content/" data-admin="http://localhost:2368/ghost/" data-key="68cbfb44b9ff9f48fbe476a9cc" data-title="null" data-count="true" data-post-id="64eb485d9eae8b4da491af13" data-color-scheme="auto" data-avatar-saturation="60" data-accent-color="#241f31" data-comments-enabled="all" data-publication="Pwnliit" crossorigin="anonymous"></script>
+    
+        </section>
 
 </article>
 </main>
 
-    <section class="footer-cta outer">
-        <div class="inner">
-            <h2 class="footer-cta-title">Sign up for more like this.</h2>
-            <a class="footer-cta-button" href="index.html#/portal" data-portal>
-                <div class="footer-cta-input">Enter your email</div>
-                <span>Subscribe</span>
-            </a>
-        </div>
-    </section>
 
 
 
@@ -291,6 +284,16 @@ Any network in a single area is called a LAN (Local Area Network) and the LAN th
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
                 <span class="post-card-meta-length">3 min read</span>
+                <script
+    data-ghost-comment-count="64eb47a39eae8b4da491af0a"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -335,6 +338,16 @@ The cybersecurity field is</div>
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
                 <span class="post-card-meta-length">1 min read</span>
+                <script
+    data-ghost-comment-count="64eb47549eae8b4da491aeff"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -378,6 +391,16 @@ See you in the next post.</div>
 
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+                <script
+    data-ghost-comment-count="64eb46999eae8b4da491aef4"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -451,7 +474,7 @@ See you in the next post.</div>
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous">
 </script>
-<script src="../assets/built/casper.js%3Fv=493247ffb5"></script>
+<script src="../assets/built/casper.js%3Fv=5be07d1dca"></script>
 <script>
 $(document).ready(function () {
     // Mobile Menu Trigger

@@ -8,10 +8,10 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=493247ffb5.css" />
-    <link rel="preload" as="script" href="../assets/built/casper.js%3Fv=493247ffb5" />
+    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=5be07d1dca.css" />
+    <link rel="preload" as="script" href="../assets/built/casper.js%3Fv=5be07d1dca" />
 
-    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=493247ffb5.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=5be07d1dca.css" />
 
     <link rel="icon" href="http://localhost:2368/content/images/size/w256h256/2023/08/Pwnliit-1.png" type="image/png">
     <link rel="canonical" href="http://localhost:2368/networking-refresher-part-1/">
@@ -150,9 +150,10 @@ Any network in a single area is called a LAN (Local Area Network) and the LAN th
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="68cbfb44b9ff9f48fbe476a9cc" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
     
     <link href="http://localhost:2368/webmentions/receive/" rel="webmention">
-    <script defer src="../public/cards.min.js%3Fv=493247ffb5"></script>
-    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=493247ffb5.css">
-    <script defer src="../public/member-attribution.min.js%3Fv=493247ffb5"></script><style>:root {--ghost-accent-color: #241f31;}</style>
+    <script defer src="../public/cards.min.js%3Fv=5be07d1dca"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=5be07d1dca.css">
+    <script defer src="../public/comment-counts.min.js%3Fv=5be07d1dca" data-ghost-comments-counts-api="http://localhost:2368/members/api/comments/counts/"></script>
+    <script defer src="../public/member-attribution.min.js%3Fv=5be07d1dca"></script><style>:root {--ghost-accent-color: #241f31;}</style>
 
 </head>
 <body class="post-template is-head-left-logo has-cover">
@@ -169,11 +170,7 @@ Any network in a single area is called a LAN (Local Area Network) and the LAN th
             </div>
 
             <nav class="gh-head-menu">
-                <ul class="nav">
-    <li class="nav-home"><a href="http://localhost:2368/">Home</a></li>
-    <li class="nav-about"><a href="http://localhost:2368/about/">About</a></li>
-</ul>
-
+                
             </nav>
 
             <div class="gh-head-actions">
@@ -231,19 +228,15 @@ Any network in a single area is called a LAN (Local Area Network) and the LAN th
         <p>In this article I will be covering a brief networking refresher to get you going.</p><p>What is a computer network? Basically a computer network is a group or system of interconnected computers.</p><p>Any network in a single area is called a LAN (Local Area Network) and the LAN then connects to the WAN. The internet is an example of a WAN.</p><h1 id="the-osi-model">The OSI model</h1><p>OSI stands for Open Systems Interconnection. It was introduced to standardize networks in a way that allowed multi-vendor systems.</p><p>The OSI model consists of 7 layers which are referenced to help understand how networks operate.</p><p>The OSI layers are:</p><p>7. Application layer</p><p>6.Presentation layer</p><p>5.Session layer</p><p>4.Transport layer</p><p>3.Network layer</p><p>2.Data link layer</p><ol><li>Physical layer</li></ol><p>There is a simple acronym that can help you grasp the 7 layers: Please Do Not Throw Sausage Pizza Away. (1 &gt; 7).</p><p>Lets go through the different layers:</p><p>1.Physical Layer</p><p>This layer is responsible for carrying data across physical hardware such as ethernet cables. Some devices include Network Interface Cards and Hubs.</p><p>2. Data Link layer</p><p>This layer is responsible for adding physical addresses to the data being transmitted. The physical addresses in this case are MAC addresses. (Media Access Control address). The source and destination MAC address are added. Switching also occurs in this layer.</p><p>3.Network Layer</p><p>This layer handles IP addressing and routing. The source and destination IP addresses are added to the data. (Internet Protocol address). A router is basically a doorway out of your internal network to the external network.</p><p>4.Transport Layer</p><p>This layer adds the transport protocol to be used, such as Transmission Control Protocol (TCP) and the User Datagram Protocol (UDP). A protocol is basically a set of rules and regulations, therefore the transport layer regulates how the data will be transported. Another thing to note is that the source and destination port numbers are also added.</p><p>5.Session Layer</p><p>This layer is responsible for establishing and terminating connections between devices. (Start and Stop sessions).</p><p>6.Presentation Layer</p><p>This layer formats the data in a way the receiving application can understand.(JPEG,WMV). Encryption and decryption can also be done in this layer. Compression and decompression can also occur.</p><p>7.Application Layer</p><p>This is the layer where the application and the user interact/communicate. Application specific protocols are used such as SMTP (Simple Mail Transfer Protocol), FTP (File Transfer Protocol), TELNET to mention just a few.</p><p>I should also mention encapsulation and decapsulation. Very briefly: <strong>Encapsulation adds information to a packet as it travels to its destination (from layer 7 to layer 1).</strong> <strong>Decapsulation reverses the process by removing the info, so a destination device can read the original data (from layer 1 to layer 7).</strong></p><p>Read more about encapsulaion and decapsulation:</p><p><a href="https://www.techtarget.com/searchnetworking/tip/Intro-to-encapsulation-and-decapsulation-in-networking?ref=localhost" rel="noopener ugc nofollow">https://www.techtarget.com/searchnetworking/tip/Intro-to-encapsulation-and-decapsulation-in-networking</a></p><h2 id="difference-between-encapsulation-and-decapsulationgeeksforgeeks">Difference between encapsulation and decapsulation - GeeksforGeeks</h2><h3 id="overview-this-article-will-make-you-aware-about-encapsulation-decapsulation-and-their-differences-in-any-type%E2%80%A6">Overview : This article will make you aware about Encapsulation &amp; Decapsulation, and their differences. In any type…</h3><p>www.geeksforgeeks.org</p><p><a href="https://www.computernetworkingnotes.com/ccna-study-guide/data-encapsulation-and-de-encapsulation-explained.html?ref=localhost" rel="noopener ugc nofollow">https://www.computernetworkingnotes.com/ccna-study-guide/data-encapsulation-and-de-encapsulation-explained.html</a></p><p>It is important to note that we do not use the OSI model, we just reference from it. We use the TCP/IP model.</p><h1 id="tcpip-model">TCP/IP model</h1><p>The TCP/IP stands for Transmission Control Protocol/Internet Protocol and is a model used to standardize computer networking. The model consists of 5 layers. They are:</p><p>5.Application Layer</p><p>4.Transport Layer</p><p>3.Network Layer</p><p>2.Data Link Layer</p><p>1.Physical Layer</p><p>A simple acronym for this is: Please Do Not Throw Away (1 &gt; 5).</p><h1 id="troubleshooting-a-network">Troubleshooting a network</h1><p>When faced with a networking issue it is important to know how to fix the issue. One should reference the OSI model when troubleshooting a network. I will go through a basic process to do so and please add any steps I may have missed in the comments.</p><p>1.Physical layer</p><p>Look at the networking hardware being used, are all cables plugged in, is the Network Interface Card or Wireless Adapter working. Are there any faulty cables? Examine all physical networking hardware in use.</p><p>2.Data Link Layer</p><p>Is the switch working properly, are the cables plugged in correctly.</p><p>3.Network Layer</p><p>Is the router on or off, is it faulty. Does it have a proper power connection. Is IP addressing done correctly.</p><p>4.Transport Layer</p><p>What ports are being used, which transport protocol is in use, is it the appropriate protocol.</p><p>5.Session Layer</p><p>Was the session established, or was it terminated.</p><p>6.Presentation Layer</p><p>Is the data formatted in the correct way, is the appropriate form of encryption and decryption used. Was the data compressed and decompressed.</p><p>7.Application Layer</p><p>Does the application function properly. Is it trustworthy and legitimate.</p><figure class="kg-card kg-image-card"><img src="https://miro.medium.com/v2/resize:fit:700/1*fy11Uk0rt-rJgdLa-vOi5w.jpeg" class="kg-image" alt loading="lazy" width="700" height="933"></figure><p>Computer networking skills are essential in the cybersecurity sector and one should develop his computer networks skills in order to stand out. That is all for now. See you in part 2.</p>
     </section>
 
+        <section class="article-comments gh-canvas">
+            
+        <script defer src="https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js" data-ghost-comments="http://localhost:2368/" data-api="http://localhost:2368/ghost/api/content/" data-admin="http://localhost:2368/ghost/" data-key="68cbfb44b9ff9f48fbe476a9cc" data-title="null" data-count="true" data-post-id="64eb47a39eae8b4da491af0a" data-color-scheme="auto" data-avatar-saturation="60" data-accent-color="#241f31" data-comments-enabled="all" data-publication="Pwnliit" crossorigin="anonymous"></script>
+    
+        </section>
 
 </article>
 </main>
 
-    <section class="footer-cta outer">
-        <div class="inner">
-            <h2 class="footer-cta-title">Sign up for more like this.</h2>
-            <a class="footer-cta-button" href="index.html#/portal" data-portal>
-                <div class="footer-cta-input">Enter your email</div>
-                <span>Subscribe</span>
-            </a>
-        </div>
-    </section>
 
 
 
@@ -288,6 +281,16 @@ In order for a network application to communicate it has to choose how it wants 
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
                 <span class="post-card-meta-length">7 min read</span>
+                <script
+    data-ghost-comment-count="64eb485d9eae8b4da491af13"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -332,6 +335,16 @@ The cybersecurity field is</div>
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
                 <span class="post-card-meta-length">1 min read</span>
+                <script
+    data-ghost-comment-count="64eb47549eae8b4da491aeff"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -375,6 +388,16 @@ See you in the next post.</div>
 
         <footer class="post-card-meta">
             <time class="post-card-meta-date" datetime="2023-08-27">Aug 27, 2023</time>
+                <script
+    data-ghost-comment-count="64eb46999eae8b4da491aef4"
+    data-ghost-comment-count-empty=""
+    data-ghost-comment-count-singular="comment"
+    data-ghost-comment-count-plural="comments"
+    data-ghost-comment-count-tag="span"
+    data-ghost-comment-count-class-name=""
+    data-ghost-comment-count-autowrap="true"
+>
+</script>
         </footer>
 
     </div>
@@ -448,7 +471,7 @@ See you in the next post.</div>
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
     crossorigin="anonymous">
 </script>
-<script src="../assets/built/casper.js%3Fv=493247ffb5"></script>
+<script src="../assets/built/casper.js%3Fv=5be07d1dca"></script>
 <script>
 $(document).ready(function () {
     // Mobile Menu Trigger
